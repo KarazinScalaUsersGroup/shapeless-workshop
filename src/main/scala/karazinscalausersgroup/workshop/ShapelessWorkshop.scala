@@ -16,14 +16,14 @@ object ShapelessWorkshop extends App {
   val yellow: Light    = Inr(Inl(Yellow()))
   val green: Light = Inr(Inr(Inl(Green())))
 
-  def print(light: Light): Unit = light match {
+  def printLight(light: Light): Unit = light match {
     case Inl(_)           => println("Red")
     case Inr(Inl(_))      => println("Yellow")
     case Inr(Inr(Inl(_))) => println("Green")
   }
 
-  print(red)
-  print(green)
+  printLight(red)
+  printLight(green)
 
   type StringOrDouble = String :+: Double :+: CNil
 
@@ -33,16 +33,15 @@ object ShapelessWorkshop extends App {
   implicit def doubleToCoproduct(s: Double): StringOrDouble =
     Coproduct[StringOrDouble](s)
 
-  def print(value: StringOrDouble): Unit =
+  def printStringOrDouble(value: StringOrDouble): Unit =
     println(
       value.select[String] getOrElse value.select[Double].get
     )
 
-
-  print(3.14)
-  print("Hello")
+  printStringOrDouble(3.14)
+  printStringOrDouble("Hello")
 
   // Error: will not compile
-  // process(4)
+  // printStringOrDouble(true)
 
 }
