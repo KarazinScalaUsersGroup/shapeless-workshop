@@ -57,7 +57,7 @@ object ShapelessWorkshop extends App {
     encoder.encode(value)
 
 
-  println(encode(Employee("Max", 42, manager = true)))
-  println(encode(Employee("Max", 42, manager = true) :: HNil))
+  println(encode(Employee("John", 42, manager = true)))
+  println(encode(Employee("John", 42, manager = true) :: HNil))
 
 }
